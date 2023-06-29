@@ -1,7 +1,13 @@
 <template>
     <div id = "header">
+      <span :style="{color:color}">  
        {{name}}
-    </div>    
+      </span> 
+    </div>  
+    <div class="flex"> 
+    <button :style="{marginRight:'20px'}" @click="changeColor('blue')"> Синий цвет </button>
+    <button @click="changeColor('red')"> Красный цвет  </button>
+    </div> 
 </template>
 
 
@@ -10,7 +16,12 @@
 #header {
 text-align: center;
 font-size: 20px;
-color: blue;
+}
+
+.flex {
+    margin-top: 10px;
+    display:flex;
+    justify-content: center;
 }
 
 </style>
@@ -21,9 +32,16 @@ import {ref} from 'vue';
 
 export default defineComponent({
     setup() {
-      const name = ref('Блок-схема');
+      const name = ref('Блок-схема')
+      const color = ref('aqua')
+      function changeColor(colorButton) {
+          color.value = colorButton;
+          console.log(color.value)
+      }
       return {
-          name
+          name,
+          color,
+          changeColor
       }
     },
 })
