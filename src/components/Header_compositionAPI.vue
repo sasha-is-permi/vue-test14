@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {ref, reactive, computed, onMounted} from 'Vue'
+import {ref, reactive, computed, onMounted} from 'vue'
 
 const carsName = ref("Машины")
 const obj = reactive({
@@ -43,7 +43,9 @@ const carsModels1 = computed(
 
 <template>
     <div id = "header">
-
+        <span :style="{color:'#00c',marginLeft:'30px'}">
+        {{carsName}}
+        </span>
        <ul>
        <li v-for="item in obj.carsMarks" @click="viewModels(item)">
             {{item.Name}}
