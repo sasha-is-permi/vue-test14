@@ -1,0 +1,12 @@
+[
+  { "Name": "Sequoia", "Mark": "Toyota", "Sells": 5 },
+  { "Name": "Tundra", "Mark": "Toyota", "Sells": 1 },
+  { "Name": "Camry", "Mark": "Toyota", "Sells": 2 },
+
+  { "Name": "GL", "Mark": "Mercedes", "Sells": 1 },
+  { "Name": "Viano", "Mark": "Mercedes", "Sells": 1 },
+
+  { "Name": "Kalina", "Mark": "LADA", "Sells": 3 },
+  { "Name": "2101", "Mark": "LADA", "Sells": 0 },
+  { "Name": "Sedan Baklazhan", "Mark": "LADA", "Sells": 27 }
+]
