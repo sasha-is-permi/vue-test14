@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import Header2 from "./components/Header2.vue"
+import Header from "./components/Header_compositionAPI.vue"
 </script>
 
 <template>
   <header>
-   <Header2/>
+   <Header/>
   </header>
 
 </template>
