@@ -1,22 +1,45 @@
 <script setup lang="ts">
-import {ref, reactive, computed, onMounted} from 'vue'
+import {watch, ref, reactive, computed, onMounted} from 'vue'
+
+import {useStore} from 'vuex'
+import { mapGetters } from 'vuex';
+
+const store = useStore()
 
 const carsName = ref("Машины")
-const obj = reactive({
+/* const obj = reactive({
     carsMarks: [],
     carsModels:[],    
-    })
+    })*/
 const currentCar = ref("")
 
 
-const carsModels1 = computed(
-    ()=>{ return  obj.carsModels.filter(item=>item.Mark===currentCar.value) }
+
+
+const title = computed(
+()=>{ return store.getters.getTitle}
 )
+
+const getCarsMarks = computed(
+()=>{ return store.getters.carsMarksGetter}
+)
+
+const carsModels = computed(
+    ()=>{ return store.getters.carsModelsGetter.filter(item=>item.Mark===currentCar.value) 
+    }
+)
+
+watch(
+    currentCar,(currentValue,oldValue) => {
+            console.log(currentValue)
+    }
+)
+
      
   function  viewModels(item){
     currentCar.value =  item.Name
     }
-  function  loadCar(){
+/*  function  loadCar(){
        fetch("../../json/marks.JSON")
       .then(res => res.json())
        .then(data =>  {obj.carsMarks = data})  
@@ -24,11 +47,14 @@ const carsModels1 = computed(
         fetch("../../json/models.JSON")
       .then(res => res.json())
        .then(data =>  {obj.carsModels = data})            
-    }
+    }*/
 
     onMounted(
         ()=>{
-             loadCar()
+        //    loadCar()
+        store.dispatch("getCarsMarks");
+        store.dispatch("getCarsModels");
+
         }
     )   
     
@@ -44,19 +70,20 @@ const carsModels1 = computed(
 <template>
     <div id = "header">
         <span :style="{color:'#00c',marginLeft:'30px'}">
-        {{carsName}}
+
+        {{carsName}} :  {{title}} {{$store.getters.getAction}}
         </span>
-       <ul>
-       <li v-for="item in obj.carsMarks" @click="viewModels(item)">
+     <ul>
+       <li v-for="item in getCarsMarks" @click="viewModels(item)" :style="{cursor:'pointer'}">
             {{item.Name}}
        </li>
        </ul>
 
        <ul>
-       <li v-for="item in carsModels1">
+       <li v-for="item in carsModels">
             {{item.Name}}
        </li>
-       </ul>
+       </ul> --
 
     </div> 
 </template>
